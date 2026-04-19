@@ -1,0 +1,161 @@
+.ex {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  cursor: help;
+  outline: none;
+}
+.ex-inline { display: inline; }
+.ex:hover, .ex:focus-visible { outline: none; }
+.ex-hint {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: rgba(38, 234, 159, 0.12);
+  color: var(--accent);
+  transition: background var(--dur-fast) var(--ease);
+  flex-shrink: 0;
+}
+.ex:hover .ex-hint { background: var(--accent); color: var(--ink-000); }
+
+/* Portal-rendered popover — `position: fixed`, coordinates come from JS.
+   Visual anchors sit below (ex-pop-above) or above (ex-pop-below) the trigger. */
+.ex-pop {
+  position: fixed;
+  padding: 0.75rem 0.9rem;
+  background: rgba(10, 10, 18, 0.97);
+  border: 1px solid rgba(38, 234, 159, 0.35);
+  border-radius: var(--r-sm);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  line-height: 1.45;
+  text-align: left;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  box-shadow: 0 18px 36px -12px rgba(0, 0, 0, 0.9), 0 0 28px -8px rgba(38, 234, 159, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 9999;
+  cursor: default;
+  pointer-events: none; /* popover is informational; don't block hover */
+  animation: ex-fade 140ms ease-out;
+}
+@keyframes ex-fade {
+  from { opacity: 0; transform: translateY(var(--ex-slide, 0)); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Above the trigger — move popover up by its own height */
+.ex-pop-above {
+  transform: translateY(-100%);
+  --ex-slide: 4px;
+}
+.ex-pop-below {
+  transform: none;
+  --ex-slide: -4px;
+}
+
+/* Arrow */
+.ex-pop::after {
+  content: '';
+  position: absolute;
+  left: var(--ex-arrow-left, 50%);
+  transform: translateX(-50%);
+  border-width: 6px;
+  border-style: solid;
+}
+.ex-pop-above::after {
+  top: 100%;
+  border-color: rgba(38, 234, 159, 0.35) transparent transparent transparent;
+}
+.ex-pop-below::after {
+  bottom: 100%;
+  border-color: transparent transparent rgba(38, 234, 159, 0.35) transparent;
+}
+
+.ex-pop-head {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding-bottom: 0.55rem;
+  margin-bottom: 0.55rem;
+  border-bottom: 1px solid var(--border);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.78rem;
+  color: var(--accent);
+  letter-spacing: 0.04em;
+}
+.ex-pop-head svg { color: var(--accent); }
+.ex-pop-conf {
+  margin-left: auto;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-family: 'JetBrains Mono', Consolas, monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0;
+  font-weight: 700;
+}
+.ex-pop-conf.hi { background: rgba(38, 234, 159, 0.15); color: var(--accent); }
+.ex-pop-conf.md { background: rgba(247, 184, 74, 0.15); color: #F7B84A; }
+.ex-pop-conf.lo { background: rgba(232, 42, 174, 0.15); color: var(--octave-pink); }
+
+.ex-factors { display: flex; flex-direction: column; gap: 0.32rem; }
+.ex-factor {
+  display: grid;
+  grid-template-columns: 1fr 70px 46px;
+  gap: 0.5rem;
+  align-items: center;
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+}
+.ex-factor-label { color: var(--text); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ex-factor-bar {
+  position: relative;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.ex-factor-fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  height: 100%;
+  border-radius: 2px;
+}
+.ex-factor-bar.is-pos .ex-factor-fill { background: linear-gradient(90deg, var(--accent), #5CFFB8); }
+.ex-factor-bar.is-neg .ex-factor-fill { background: linear-gradient(90deg, var(--octave-pink), #FF69C8); }
+.ex-factor-w {
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  font-weight: 700;
+}
+.ex-factor-w.is-pos { color: var(--accent); }
+.ex-factor-w.is-neg { color: var(--octave-pink); }
+
+.ex-meta {
+  margin-top: 0.55rem;
+  padding-top: 0.5rem;
+  border-top: 1px dashed var(--border);
+  color: var(--text-muted);
+  font-size: 0.76rem;
+  line-height: 1.5;
+}
+.ex-meta span {
+  font-family: var(--font-display);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 0.2rem;
+}
+.ex-cf span { color: var(--octave-pink); }

@@ -1,0 +1,76 @@
+/* Octave brand tokens — turquoise-led per brand rule (one primary per application). */
+:root {
+  /* Brand colours — exact values from Octave Brand Guidelines v1.0 */
+  --octave-turquoise: #26EA9F;
+  --octave-turquoise-600: #1FC184;
+  --octave-turquoise-700: #17956A;
+  --octave-turquoise-glow: rgba(38, 234, 159, 0.35);
+
+  --octave-pink: #E82AAE;
+  --octave-pink-600: #C01F90;
+  --octave-pink-glow: rgba(232, 42, 174, 0.35);
+
+  /* Neutral canvas — deep ink so chroma glows like light through glass */
+  --ink-000: #0A0A12;
+  --ink-050: #11111C;
+  --ink-100: #161624;
+  --ink-200: #1E1E30;
+  --ink-300: #2A2A40;
+  --ink-400: #3A3A55;
+
+  --fog-400: #6B6B85;
+  --fog-300: #8F8FA8;
+  --fog-200: #B8B8CC;
+  --fog-100: #E4E4EE;
+  --fog-000: #F7F7FB;
+
+  /* Semantic */
+  --bg: var(--ink-000);
+  --bg-raised: var(--ink-050);
+  --bg-card: var(--ink-100);
+  --bg-inset: var(--ink-200);
+  --border: rgba(255, 255, 255, 0.06);
+  --border-strong: rgba(255, 255, 255, 0.12);
+  --text: var(--fog-000);
+  --text-muted: var(--fog-300);
+  --text-dim: var(--fog-400);
+  --accent: var(--octave-turquoise);
+  --accent-2: var(--octave-pink);
+
+  /* Typography — brand spec. Use installed font if present, else nearest equivalents */
+  --font-display: 'ITC Avant Garde Gothic Pro', 'Century Gothic', 'Jost', 'Helvetica Neue', sans-serif;
+  --font-body: 'Lato', 'Helvetica Neue', system-ui, sans-serif;
+
+  /* Scale */
+  --t-hero: clamp(2.75rem, 6vw, 5.5rem);
+  --t-display: clamp(2rem, 4vw, 3.25rem);
+  --t-h1: 2.25rem;
+  --t-h2: 1.5rem;
+  --t-h3: 1.125rem;
+  --t-body: 1rem;
+  --t-small: 0.875rem;
+  --t-micro: 0.75rem;
+
+  /* Radii */
+  --r-sm: 6px;
+  --r-md: 12px;
+  --r-lg: 20px;
+  --r-xl: 28px;
+  --r-pill: 999px;
+
+  /* Shadows — chroma-tinted for glass feel */
+  --shadow-glow-t: 0 0 48px -8px var(--octave-turquoise-glow);
+  --shadow-glow-p: 0 0 48px -8px var(--octave-pink-glow);
+  --shadow-card: 0 10px 40px -12px rgba(0, 0, 0, 0.6);
+
+  /* Motion */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-fast: 180ms;
+  --dur-med: 360ms;
+  --dur-slow: 720ms;
+
+  /* Layout */
+  --nav-h: 72px;
+  --container: 1280px;
+  --gutter: clamp(1rem, 3vw, 2.5rem);
+}

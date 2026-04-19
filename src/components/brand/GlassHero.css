@@ -1,0 +1,120 @@
+.hero {
+  position: relative;
+  min-height: calc(100vh - var(--nav-h));
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  isolation: isolate;
+  --mx: 50%;
+  --my: 40%;
+}
+
+.hero-prism {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.prism-ring {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.7;
+  transform-origin: center;
+  will-change: transform;
+}
+
+.prism-ring-1 {
+  width: 72vmax;
+  height: 72vmax;
+  margin: -36vmax 0 0 -36vmax;
+  background: conic-gradient(
+    from 90deg,
+    rgba(38, 234, 159, 0.55),
+    rgba(38, 234, 159, 0) 35%,
+    rgba(232, 42, 174, 0.25) 55%,
+    rgba(38, 234, 159, 0) 75%,
+    rgba(38, 234, 159, 0.55)
+  );
+  animation: spin 40s linear infinite;
+}
+
+.prism-ring-2 {
+  width: 52vmax;
+  height: 52vmax;
+  margin: -26vmax 0 0 -26vmax;
+  background: radial-gradient(circle at 30% 30%, rgba(38, 234, 159, 0.6), transparent 60%);
+  animation: drift 18s ease-in-out infinite alternate;
+  mix-blend-mode: screen;
+}
+
+.prism-ring-3 {
+  width: 32vmax;
+  height: 32vmax;
+  margin: -16vmax 0 0 -16vmax;
+  background: radial-gradient(circle at 60% 60%, rgba(232, 42, 174, 0.45), transparent 65%);
+  animation: drift-rev 22s ease-in-out infinite alternate;
+  mix-blend-mode: screen;
+}
+
+/* Subtle line grid — like caustic lines refracting through glass */
+.prism-grid {
+  position: absolute;
+  inset: -10%;
+  background-image:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(50% 50% at var(--mx) var(--my), #000 0%, transparent 75%);
+  -webkit-mask-image: radial-gradient(50% 50% at var(--mx) var(--my), #000 0%, transparent 75%);
+  transform: perspective(900px) rotateX(62deg) translateZ(0);
+  opacity: 0.8;
+}
+
+/* Chromatic spotlight that follows pointer */
+.prism-spot {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    24vmax 24vmax at var(--mx) var(--my),
+    rgba(38, 234, 159, 0.22),
+    rgba(232, 42, 174, 0.08) 40%,
+    transparent 70%
+  );
+  mix-blend-mode: screen;
+  transition: background 120ms linear;
+}
+
+/* Film grain for texture */
+.prism-noise {
+  position: absolute;
+  inset: 0;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.4 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding: clamp(3rem, 8vw, 8rem) 0 clamp(2.5rem, 6vw, 6rem);
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes drift {
+  0%   { transform: translate(-6%, -3%) scale(1); }
+  100% { transform: translate(7%, 4%) scale(1.1); }
+}
+@keyframes drift-rev {
+  0%   { transform: translate(6%, 3%) scale(1); }
+  100% { transform: translate(-7%, -4%) scale(1.15); }
+}
+
+/* Motion safety */
+@media (prefers-reduced-motion: reduce) {
+  .prism-ring-1, .prism-ring-2, .prism-ring-3 { animation: none; }
+}

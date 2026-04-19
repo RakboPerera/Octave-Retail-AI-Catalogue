@@ -1,0 +1,11 @@
+node_modules
+dist
+.DS_Store
+.env
+.env.local
+*.log
+.vite
+
+# Claude Code local session config (user-local, not for version control)
+.claude/
+memory/

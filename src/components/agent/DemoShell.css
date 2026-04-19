@@ -1,0 +1,46 @@
+.demo-shell {
+  background: linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0)), var(--bg-card);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r-xl);
+  padding: 1.8rem;
+  position: relative;
+  overflow: hidden;
+}
+.demo-shell::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: var(--r-xl);
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(38, 234, 159, 0.4), rgba(38, 234, 159, 0) 50%, rgba(232, 42, 174, 0.3));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.demo-shell-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.demo-shell-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.25rem;
+  letter-spacing: -0.01em;
+  margin: 0.35rem 0 0.3rem;
+}
+.demo-shell-sub { color: var(--text-muted); max-width: 620px; }
+
+.demo-run { font-size: 0.9rem; padding: 0.7rem 1.15rem; }
+
+.demo-shell-body {
+  display: grid;
+  gap: 1.2rem;
+}
